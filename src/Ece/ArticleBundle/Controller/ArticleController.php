@@ -9,11 +9,12 @@ use Ece\ArticleBundle\Form\ArticleType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 class ArticleController extends Controller
 {
     /**
-     * @Route("/lister")
+     * @Route("/lister", name="article_lister")
      * @Template()
      */
     public function listerAction()
@@ -24,14 +25,24 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("/ajouter")
+     * @Route("/ajouter", name="article_ajouter")
      * @Template()
      */
-    public function ajouterAction()
+    public function ajouterAction(Request $request)
     {
         $article = new Article();
 
         $formArticle = $this->createForm(new ArticleType(), $article);
+
+        $formArticle->handleRequest($request);
+
+        if ($formArticle->isValid()){
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($article);
+            $manager->flush();
+
+            return $this->redirect($this->generateUrl('article_lister'));
+        }
 
         return array("formArticle" => $formArticle->createView());
 
@@ -48,7 +59,7 @@ class ArticleController extends Controller
 //        $article->setNom('Premier article de test');
 //        $article->setDescription('Lorem ipsum ....');
 //        $article->setDate(new \DateTime());
-//
+
 //        $manager = $this->getDoctrine()->getManager();
 //        $manager->persist($article);
 //        $manager->flush();

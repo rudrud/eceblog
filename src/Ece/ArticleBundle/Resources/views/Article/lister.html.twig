@@ -8,6 +8,8 @@
 {% block body %}
 <h2>Liste des articles</h2>
 
+    <p><a href="{{ path('article_ajouter') }}">Ajouter un article</a></p>
+
 <ul>
     {% for article in articles %}
         <li><a href="{{ path('article_afficher', {id: article.id}) }}">{{ article.categorie.nom }} - {{ article.nom }}</a></li>

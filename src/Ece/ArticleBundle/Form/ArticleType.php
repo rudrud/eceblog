@@ -19,6 +19,7 @@ class ArticleType extends AbstractType
             ->add('description')
             ->add('date')
             ->add('categorie')
+            ->add('submit', 'submit')
         ;
     }
     
