@@ -44,6 +44,13 @@ class Article
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="Ece\ArticleBundle\Entity\Categorie", inversedBy="articles")
+     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     */
+    protected $categorie;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -120,5 +127,28 @@ class Article
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \Ece\ArticleBundle\Entity\Categorie $categorie
+     * @return Article
+     */
+    public function setCategorie(\Ece\ArticleBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Ece\ArticleBundle\Entity\Categorie 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }
