@@ -2,9 +2,9 @@
 
 
 {% block body %}
-<h1>Affichage de l'article "Mon super article"</h1>
+<h1>Affichage de l'article "{{ article.nom }}"</h1>
 
-<p>Catégorie : Infos | Publié le 12 novembre à 14:30</p>
+<p>Catégorie : Infos | Publié le {{ article.date|date }}</p>
 
-<p Blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla </p>
+<p>{{ article.description }}</p>
 {% endblock %}

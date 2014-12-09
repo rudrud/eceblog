@@ -42,9 +42,8 @@ class ArticleController extends Controller
      */
     public function afficherAction($id)
     {
+        $article = $this->getDoctrine()->getRepository('EceArticleBundle:Article')->find($id);
 
-        $name = "coucou".uniqid();
-
-        return array('id' => $id, 'name' => $name);
+        return array('article' => $article);
     }
 }
