@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
+
+    public function findAccueil()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->addOrderBy('a.date', 'DESC')
+            ->setMaxResults(10)
+        ;
+
+        return $qb->getQuery()->execute();
+    }
+
 }

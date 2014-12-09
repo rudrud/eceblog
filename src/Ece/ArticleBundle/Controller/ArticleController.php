@@ -15,7 +15,9 @@ class ArticleController extends Controller
      */
     public function listerAction()
     {
-        return array();
+        $articles = $this->getDoctrine()->getRepository('EceArticleBundle:Article')->findAccueil();
+
+        return array("articles" => $articles);
     }
 
     /**
