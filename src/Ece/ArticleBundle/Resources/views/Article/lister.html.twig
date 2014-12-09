@@ -15,6 +15,7 @@
         <li>
             <a href="{{ path('article_afficher', {id: article.id}) }}">{{ article.categorie.nom }} - {{ article.nom }}</a>
             - <a href="{{ path('article_modifier', {id: article.id}) }}">Modifier</a>
+            - <a href="{{ path('article_supprimer', {id: article.id}) }}">Supprimer</a>
         </li>
     {% endfor %}
 </ul>

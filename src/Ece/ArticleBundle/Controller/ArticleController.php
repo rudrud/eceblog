@@ -71,6 +71,20 @@ class ArticleController extends Controller
         return array("article" => $article, "formArticle" => $formArticle->createView());
     }
 
+    /**
+     * @Route("/supprimer/{id}", name="article_supprimer")
+     * @Template()
+     * @ParamConverter()
+     */
+    public function supprimerAction(Article $article)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($article);
+        $manager->flush();
+
+        return $this->redirect($this->generateUrl('article_lister'));
+    }
+
 
     /**
      * @Route("/afficher/{id}", name="article_afficher")
