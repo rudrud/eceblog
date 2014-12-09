@@ -39,7 +39,7 @@ class ArticleController extends Controller
 
 
     /**
-     * @Route("/afficher/{id}")
+     * @Route("/afficher/{id}", name="article_afficher")
      * @Template()
      */
     public function afficherAction($id)

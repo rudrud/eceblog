@@ -2,18 +2,15 @@
 
 
 {% block titlepage %}
-{{ parent() }} : Super article
+{{ parent() }} : Liste des articles
 {% endblock %}
 
 {% block body %}
 <h2>Liste des articles</h2>
 
 <ul>
-    <li><a href="afficher/123">Mon super article</a></li>
-    <li><a href="">Mon super article</a></li>
-    <li><a href="">Mon super article</a></li>
-    <li><a href="">Mon super article</a></li>
-    <li><a href="">Mon super article</a></li>
-    <li><a href="">Mon super article</a></li>
+    {% for article in articles %}
+        <li><a href="{{ path('article_afficher', {id: article.id}) }}">{{ article.nom }}</a></li>
+    {% endfor %}
 </ul>
 {% endblock %}
