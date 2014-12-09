@@ -27,7 +27,7 @@ class ArticleController extends Controller
     public function ajouterAction()
     {
         $categorie = new Categorie();
-        $categorie->setNom('Catégorie 1');
+        $categorie->setNom('Catégorie 3');
 
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($categorie);
