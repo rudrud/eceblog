@@ -6,6 +6,7 @@ use Doctrine\Common\Util\Debug;
 use Ece\ArticleBundle\Entity\Article;
 use Ece\ArticleBundle\Entity\Categorie;
 use Ece\ArticleBundle\Form\ArticleType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -45,26 +46,29 @@ class ArticleController extends Controller
         }
 
         return array("formArticle" => $formArticle->createView());
+    }
+
+    /**
+     * @Route("/modifier/{id}", name="article_modifier")
+     * @Template()
+     * @ParamConverter()
+     */
+    public function modifierAction(Article $article, Request $request)
+    {
+        $formArticle = $this->createForm(new ArticleType(), $article);
+
+        $formArticle->handleRequest($request);
+
+        if ($formArticle->isValid()){
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($article);
+            $manager->flush();
+
+            return $this->redirect($this->generateUrl('article_lister'));
+        }
 
 
-//        $categorie = new Categorie();
-//        $categorie->setNom('Catégorie 3');
-//
-//        $manager = $this->getDoctrine()->getManager();
-//        $manager->persist($categorie);
-//        $manager->flush();
-
-
-//        $article = new Article();
-//        $article->setNom('Premier article de test');
-//        $article->setDescription('Lorem ipsum ....');
-//        $article->setDate(new \DateTime());
-
-//        $manager = $this->getDoctrine()->getManager();
-//        $manager->persist($article);
-//        $manager->flush();
-
-//        exit;
+        return array("article" => $article, "formArticle" => $formArticle->createView());
     }
 
 
