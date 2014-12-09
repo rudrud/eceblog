@@ -17,7 +17,9 @@ class ArticleRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('a')
             ->addSelect('c')
+            ->addSelect('au')
             ->join('a.categorie', 'c')
+            ->join('a.auteur', 'au')
             ->addOrderBy('a.date', 'DESC')
             ->setMaxResults(10)
         ;
