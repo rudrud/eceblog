@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+
+{% block titlepage %}
+{{ parent() }} : Super article
+{% endblock %}
+
+{% block body %}
+<h2>Liste des articles</h2>
+
+<ul>
+    <li><a href="afficher/123">Mon super article</a></li>
+    <li><a href="">Mon super article</a></li>
+    <li><a href="">Mon super article</a></li>
+    <li><a href="">Mon super article</a></li>
+    <li><a href="">Mon super article</a></li>
+    <li><a href="">Mon super article</a></li>
+</ul>
+{% endblock %}

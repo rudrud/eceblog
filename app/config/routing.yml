@@ -1,0 +1,5 @@
+ece_article:
+    resource: "@EceArticleBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
