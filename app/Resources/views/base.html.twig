@@ -9,7 +9,11 @@
     <body>
         <h1>{% block titlepage %}Mon blog{% endblock %}</h1>
         {% block body %}{% endblock %}
-        <footer>Merci à tous</footer>
+        <footer>
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('logout') }}">Se déconnecter</a>
+            {% endif %}
+        </footer>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
