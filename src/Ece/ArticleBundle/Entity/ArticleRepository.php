@@ -16,6 +16,8 @@ class ArticleRepository extends EntityRepository
     public function findAccueil()
     {
         $qb = $this->createQueryBuilder('a')
+            ->addSelect('c')
+            ->join('a.categorie', 'c')
             ->addOrderBy('a.date', 'DESC')
             ->setMaxResults(10)
         ;
