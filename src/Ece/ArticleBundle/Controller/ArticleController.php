@@ -2,8 +2,10 @@
 
 namespace Ece\ArticleBundle\Controller;
 
+use Doctrine\Common\Util\Debug;
 use Ece\ArticleBundle\Entity\Article;
 use Ece\ArticleBundle\Entity\Categorie;
+use Ece\ArticleBundle\Form\ArticleType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -23,15 +25,23 @@ class ArticleController extends Controller
 
     /**
      * @Route("/ajouter")
+     * @Template()
      */
     public function ajouterAction()
     {
-        $categorie = new Categorie();
-        $categorie->setNom('Catégorie 3');
+        $article = new Article();
 
-        $manager = $this->getDoctrine()->getManager();
-        $manager->persist($categorie);
-        $manager->flush();
+        $formArticle = $this->createForm(new ArticleType(), $article);
+
+        return array("formArticle" => $formArticle->createView());
+
+
+//        $categorie = new Categorie();
+//        $categorie->setNom('Catégorie 3');
+//
+//        $manager = $this->getDoctrine()->getManager();
+//        $manager->persist($categorie);
+//        $manager->flush();
 
 
 //        $article = new Article();
@@ -43,7 +53,7 @@ class ArticleController extends Controller
 //        $manager->persist($article);
 //        $manager->flush();
 
-        exit;
+//        exit;
     }
 
 

@@ -107,4 +107,9 @@ class Categorie
     {
         return $this->articles;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }
