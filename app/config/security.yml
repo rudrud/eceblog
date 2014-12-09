@@ -14,13 +14,16 @@ security:
         - { path: ^/, roles: ROLE_USER }
 
     providers:
-        default_provider:
-            memory:
-                users:
-                    rudy:  { password: 123456, roles: 'ROLE_USER' }
-                    benoit: { password: coucou, roles: 'ROLE_EDITEUR' }
+#        default_provider:
+#            memory:
+#                users:
+#                    rudy:  { password: 123456, roles: 'ROLE_USER' }
+#                    benoit: { password: coucou, roles: 'ROLE_EDITEUR' }
+        main:
+            entity: { class: Ece\ArticleBundle\Entity\Auteur, property: email }
 
     encoders:
+        Ece\ArticleBundle\Entity\Auteur: plaintext
         Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:

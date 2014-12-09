@@ -203,7 +203,7 @@ class Auteur implements UserInterface
     }
 
     public function getSalt(){
-        return 'salt';
+        return '';
     }
     public function getUsername(){
         return $this->getEmail();
@@ -212,7 +212,7 @@ class Auteur implements UserInterface
         return $this->getMotDePasse();
     }
     public function getRoles(){
-        return array();
+        return array('ROLE_EDITEUR');
     }
     public function eraseCredentials(){}
 
