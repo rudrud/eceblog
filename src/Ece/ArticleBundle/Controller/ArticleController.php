@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ArticleController extends Controller
 {
@@ -31,6 +32,10 @@ class ArticleController extends Controller
      */
     public function ajouterAction(Request $request)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_EDITEUR')) {
+            throw new AccessDeniedException();
+        }
+
         $article = new Article();
 
         $formArticle = $this->createForm(new ArticleType(), $article);
@@ -55,6 +60,10 @@ class ArticleController extends Controller
      */
     public function modifierAction(Article $article, Request $request)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_EDITEUR')) {
+            throw new AccessDeniedException();
+        }
+
         $formArticle = $this->createForm(new ArticleType(), $article);
 
         $formArticle->handleRequest($request);

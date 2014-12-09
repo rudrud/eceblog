@@ -3,3 +3,10 @@ ece_article:
     type:     annotation
     prefix:   /
 
+login:
+    pattern:   /login
+    defaults:  { _controller: EceArticleBundle:Security:login }
+login_check:
+    pattern:   /login_check
+logout:
+    pattern:   /logout

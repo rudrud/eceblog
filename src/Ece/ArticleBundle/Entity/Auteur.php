@@ -3,6 +3,7 @@
 namespace Ece\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Auteur
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Ece\ArticleBundle\Entity\AuteurRepository")
  */
-class Auteur
+class Auteur implements UserInterface
 {
     /**
      * @var integer
@@ -200,4 +201,19 @@ class Auteur
     public function __toString(){
         return $this->getPrenom(). ' '. $this->getNom();
     }
+
+    public function getSalt(){
+        return 'salt';
+    }
+    public function getUsername(){
+        return $this->getEmail();
+    }
+    public function getPassword(){
+        return $this->getMotDePasse();
+    }
+    public function getRoles(){
+        return array();
+    }
+    public function eraseCredentials(){}
+
 }
