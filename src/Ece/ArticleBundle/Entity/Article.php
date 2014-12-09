@@ -51,6 +51,13 @@ class Article
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="Ece\ArticleBundle\Entity\Auteur", inversedBy="articles")
+     * @ORM\JoinColumn(name="auteur_id", referencedColumnName="id", nullable=true)
+     */
+    protected $auteur;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -150,5 +157,28 @@ class Article
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param \Ece\ArticleBundle\Entity\Auteur $auteur
+     * @return Article
+     */
+    public function setAuteur(\Ece\ArticleBundle\Entity\Auteur $auteur)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return \Ece\ArticleBundle\Entity\Auteur 
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
     }
 }

@@ -4,7 +4,7 @@
 {% block body %}
 <h1>Affichage de l'article "{{ article.nom }}"</h1>
 
-<p>Catégorie : Infos | Publié le {{ article.date|date }}</p>
+<p>Catégorie : {{ article.categorie }} | Publié le {{ article.date|date }} par {{ article.auteur }}</p>
 
 <p>{{ article.description }}</p>
 {% endblock %}
