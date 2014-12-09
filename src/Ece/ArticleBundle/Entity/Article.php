@@ -45,7 +45,7 @@ class Article
 
     /**
      * @ORM\ManyToOne(targetEntity="Ece\ArticleBundle\Entity\Categorie", inversedBy="articles")
-     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id", nullable=false)
      */
     protected $categorie;
 
