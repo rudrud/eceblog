@@ -5,27 +5,14 @@ namespace Ece\ArticleBundle\Controller;
 use Ece\ArticleBundle\Entity\Article;
 use Ece\ArticleBundle\Form\ArticleType;
 use FOS\RestBundle\Controller\FOSRestController;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+//use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ArticleApiController extends FOSRestController
 {
-    /**
-     * This is the documentation description of your method, it will appear
-     * on a specific pane. It will read all the text until the first
-     * annotation.
-     *
-     * @ApiDoc(
-     *  resource=true,
-     *  description="This is a description of your API method",
-     *  filters={
-     *      {"name"="a-filter", "dataType"="integer"},
-     *      {"name"="another-filter", "dataType"="string", "pattern"="(foo|bar) ASC|DESC"}
-     *  }
-     * )
-     */
+
     public function getArticlesAction()
     {
         $articles = $this->getDoctrine()->getRepository('EceArticleBundle:Article')->findAccueil();
@@ -33,7 +20,7 @@ class ArticleApiController extends FOSRestController
         return $this->handleView($view);
     }
 
-
+    // {"ece_articlebundle_article":{"nom":"test", "description":"description", "date":{"date":{"year":"2015","month":"1", "day":"1"}, "time":{"hour":0, "minute":0}},"categorie":1}}
     public function postArticlesAction(Request $request){
         $article = new Article();
 
