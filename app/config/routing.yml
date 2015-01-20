@@ -10,3 +10,13 @@ login_check:
     pattern:   /login_check
 logout:
     pattern:   /logout
+
+
+articles:
+    type: rest
+    resource: @EceArticleBundle/Controller/ArticleApiController.php
+
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
